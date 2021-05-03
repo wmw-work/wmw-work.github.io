@@ -1,0 +1,114 @@
+.container-dadishu {
+    width: 600px;
+    height: 400px;
+    background: url("地图.jpg") no-repeat 0 0;
+    margin: 50px auto;
+    position: absolute;
+    top: 35%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.title-dadishu {
+    width: 100%;
+    height: 55px;
+    background: black;
+    opacity: 0.5;
+    position: relative;
+}
+.grade-dadishu {
+    display: inline-block;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: lightskyblue;
+    position: absolute;
+    top: 0;
+}
+.number-dadishu {
+    color: white;
+}
+.time-dadishu {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bolder;
+    color: lightcyan;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+}
+.time_input-dadishu {
+    font-size: 20px;
+    font-weight: bolder;
+    color: lightcyan;
+    width: 30px;
+    background: unset;
+    border: 0;
+}
+.start-dadishu {
+    width: 55%;
+    height: 60px;
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 65%;
+    font-size: 35px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(#E55C3D, #C50000);
+}
+.mask-dadishu {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: black;
+    opacity: 0.8;
+    display: none;
+}
+.end-dadishu {
+    font-size: 60px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-38%);
+    top: 40%;
+    width: 80%;
+    font-weight: bold;
+    color: red;
+
+}
+.again-dadishu {
+    width: 50%;
+    height: 55px;
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 65%;
+    font-size: 35px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(#4E3DE5FF, #009EC5FF);
+}
+.picture-dadishu {
+    width: 100px;
+    height: 120px;
+    position: relative;
+}
+.dishu-dadishu {
+    width: 100px;
+    height: 120px;
+    position: absolute;
+    display: none;
+    bottom: 0;
+    right: 0;
+}
+.active {
+    display: block;
+}

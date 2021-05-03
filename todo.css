@@ -1,0 +1,67 @@
+.container-todo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+    height: 500px;
+    background: lightblue;
+    border-radius: 5px;
+    display: none;
+}
+
+.title-todo {
+    padding: 5px;
+    background: lightpink;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    border-radius: 5px 5px 0 0;
+}
+
+#id-input-todo {
+    margin: 10px 10px 0 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 60%;
+}
+#id-button-add {
+    background: bisque;
+    border: 1px solid aliceblue;
+    font-size: 20px;
+    border-radius: 5px;
+
+}
+#id-div-container {
+    padding: 10px;
+    border: 1px dashed lightblue;
+}
+.todo-cell {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #FFFFFF;
+    text-align: left;
+    border-radius: 5px;
+    position: relative;
+}
+
+.todo-done {
+    position: relative;
+    top: 4px;
+    left: 6px;
+}
+.todo-delete {
+    padding: 0px;
+    width: 19px;
+    color: red;
+    font-weight: bold;
+    background: border-box;
+    border: 0;
+}
+.done {
+    color: gray;
+    text-decoration: line-through;
+}

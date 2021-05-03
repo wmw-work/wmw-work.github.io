@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>welcome</title>
+    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="dadishu.css">
+    <link rel="stylesheet" href="2048.css">
+
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="music1.css">
+    <link rel="stylesheet" href="music2.css">
+    <link rel="stylesheet" href="index.css">
+
+    <script src="util.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="dadishu.js"></script>
+    <style>
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<h1>WELCOME!</h1>
+<div class="box">
+  <div class="ball"></div>
+  <div class="shadow"></div>
+</div>
+<div class="contents">
+
+    <div class="modal-container-2048">
+        <div class="vertical-center">
+            <div class="box-2048">
+                <div class="title-2048">
+                    <button class="begin-2048">开始</button>
+                    <div id="id-score-2048">分数 :<input type="text" value="0" class="score-2048"></div>
+                    <div id="id-time-2048">时间 :<input type="text" value="0" class="time-2048"></div>
+                </div>
+                <div class="row-2048">
+                    <div id='id-00' data-x='0' data-y='0' class="cell-2048 number"></div>
+                    <div id='id-01' data-x='0' data-y='1' class="cell-2048 number"></div>
+                    <div id='id-02' data-x='0' data-y='2' class="cell-2048 number"></div>
+                    <div id='id-03' data-x='0' data-y='3' class="cell-2048 number"></div>
+                </div>
+                <div class="row-2048">
+                    <div id='id-10' data-x='1' data-y='0' class="cell-2048 number"></div>
+                    <div id='id-11' data-x='1' data-y='1' class="cell-2048 number"></div>
+                    <div id='id-12' data-x='1' data-y='2' class="cell-2048 number"></div>
+                    <div id='id-13' data-x='1' data-y='3' class="cell-2048 number"></div>
+                </div>
+                <div class="row-2048">
+                    <div id='id-20' data-x='2' data-y='0' class="cell-2048 number"></div>
+                    <div id='id-21' data-x='2' data-y='1' class="cell-2048 number"></div>
+                    <div id='id-22' data-x='2' data-y='2' class="cell-2048 number"></div>
+                    <div id='id-23' data-x='2' data-y='3' class="cell-2048 number"></div>
+                </div>
+                <div class="row-2048">
+                    <div id='id-30' data-x='3' data-y='0' class="cell-2048 number"></div>
+                    <div id='id-31' data-x='3' data-y='1' class="cell-2048 number"></div>
+                    <div id='id-32' data-x='3' data-y='2' class="cell-2048 number"></div>
+                    <div id='id-33' data-x='3' data-y='3' class="cell-2048 number"></div>
+                </div>
+                <div class="arrow">
+                    <span class="arrow_span arrow_up">↑</span>
+                    <span class="arrow_span arrow_down">↓</span>
+                    <span class="arrow_span arrow_left">←</span>
+                    <span class="arrow_span arrow_right">→</span>
+                </div>
+            </div>
+            <div class="mask-2048">
+                <div class="end-2048">GAME OVER</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-dadishu content">
+        <div class="title-dadishu"></div>
+        <div class="grade-dadishu">得分 : <span class="number-dadishu">0</span></div>
+        <div class="time-dadishu">时间 : <span class="time_span-dadishu">30</span></div>
+        <button class="start-dadishu">开始游戏</button>
+        <div class="picture-dadishu">
+        </div>
+        <div class="mask-dadishu">
+            <div class="end-dadishu">GAME OVER</div>
+            <button class="again-dadishu">重新开始</button>
+        </div>
+    </div>
+
+    <div class="wrapper content">
+        <div class="player__container">
+            <div class="player__body">
+                <div class="body__cover">
+                    <ul class="list list--cover">
+                        <li>
+                            <a class="list__link" href="">
+                                <i class="fa fa-navicon"></i>
+                                <div id='id-audios' class="audios" data-audios="3" data-active="0" data-mode="1">
+                                    <div class='audio play_now' data-audio="0" data-path="1.mp3">化身孤岛的鲸</div>
+                                    <div class='audio' data-audio="1" data-path="2.mp3">像我这样的人</div>
+                                    <div class='audio' data-audio="2" data-path="3.mp3">光年之外</div>
+                                </div>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a class="list__link" href=""></a>
+
+                        </li>
+
+                        <li>
+                            <a class="list__link" href=""><i class="fa fa-search"></i></a>
+
+                        </li>
+                    </ul>
+                    <audio id="id-audio-player" src="1.mp3" data-active="0"></audio>
+                    <img src="1.jpg" class="background_img img1 active">
+                    <img src="2.jpg" class="background_img img2">
+                    <img src="3.jpg" class="background_img img3">
+                    <div class="voice">
+                        <img src="voice.jpg" class="voice_img">
+                        <div class="box-music">
+                            <div class="wifi-symbol">
+                                <div class="wifi-circle first-music"></div>
+                                <div class="wifi-circle second circle_opacity"></div>
+                                <div class="wifi-circle third circle_opacity"></div>
+                            </div>
+                        </div>
+                        <div class="outer_voice">
+                            <div class="inner_voice">
+                                <div class="dot_voice"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                    <div class="time">
+                        <span id="id-time-now"><input type="text" class="music_time time1"></span>
+                        /
+                        <span id="id-time-all"><input type="text" class="music_time time2"></span>
+
+                    </div>
+                </div>
+
+                <div class="body__info">
+                    <div class="sing sing1 active">
+                        <div class="info__song sing1">化身孤岛的鲸</div>
+                        <div class="info__artist" sing1>周深</div>
+                    </div>
+                    <div class="sing sing2">
+                        <div class="info__song" sing2>像我这样的人</div>
+                        <div class="info__artist" sing2>毛不易</div>
+                    </div>
+                    <div class="sing sing3">
+                        <div class="info__song" sing3>光年之外</div>
+                        <div class="info__artist" sing3>邓紫棋</div>
+                    </div>
+
+                </div>
+
+                <div class="body__buttons">
+                    <ul class="list list--buttons">
+                        <li><a href="#" class="list__link"><i class="fa fa-step-backward"></i></a></li>
+
+                        <li>
+
+                            <a href="#" class="list__link">
+                                <div class="fa fa-play pause_play"></div>
+                                <div class="pause"></div>
+                            </a>
+                        </li>
+
+                        <li><a href="#" class="list__link"><i class="fa fa-step-forward"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="player__footer">
+                <ul class="list list--footer">
+                    <li><a href="#" class="list__link"><i class="fa fa-heart-o"></i></a></li>
+
+                    <li><a href="#" class="list__link"><i class="fa fa-random"></i></a></li>
+
+                    <li><a href="#" class="list__link"><i class="fa fa-undo"></i></a></li>
+
+                    <li><a href="#" class="list__link"><i class="fa fa-ellipsis-h"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-todo content">
+        <div class="title-todo">
+            TO DO LIST
+        </div>
+        <div class="todo-form">
+            <input id="id-input-todo" type="text">
+            <button id="id-button-add" type="button">Add</button>
+        </div>
+        <div id="id-div-container">
+        </div>
+    </div>
+
+    <img src="背景图.jpg" class="picture">
+
+</div>
+
+<ul class="title">
+    <li class="first title_li highlight-choose">首页</li>
+    <li class="game title_li">
+        玩玩小游戏<br>
+        <div class="game-content">
+            <span class="play-saolei">扫雷</span><br>
+            <span class="play-2048">2048</span><br>
+            <span class="play-dadishu">打地鼠</span><br>
+        </div>
+    </li>
+    <li class="music title_li">
+        听音乐
+    </li>
+    <li class="write_todo title_li">
+        写计划
+    </li><br>
+</ul>
+<script src="todo.js"></script>
+<script src="music.js"></script>
+<script src="2048.js"></script>
+
+<script>
+
+    const bindRemove = () => {
+        let contents = es('.content')
+        for (let i = 0; i < contents.length; i++) {
+            let content = contents[i]
+            if (content.classList.contains('active')) {
+                content.classList.remove('active')
+            }
+        }
+    }
+
+    const bindGame = () => {
+
+    }
+
+    const bindClickIndex = () => {
+        let lis = es('.title_li')
+        let play_game = e('.container-dadishu')
+        let listen_music = e('.wrapper')
+        let todo = e('.container-todo')
+        bindAll(lis, 'click', function(event) {
+            let target = event.target
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].classList.remove('highlight-choose')
+            }
+            target.classList.add('highlight-choose')
+            if (target.classList.contains('game')) {
+                bindRemove()
+                play_game.classList.add('active')
+            } else if (target.classList.contains('music')) {
+                bindRemove()
+                listen_music.classList.add('active')
+            } else if (target.classList.contains('write_todo')) {
+                bindRemove()
+                todo.classList.add('active')
+            } else if (target.classList.contains('first')) {
+                bindRemove()
+            }
+
+        })
+
+    }
+
+    const bindLi = () => {
+        let lis = es('.title_li')
+        bindAll(lis, 'mouseover', function(event) {
+            let target = event.target
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].classList.remove('highlight-li')
+            }
+            target.classList.add('highlight-li')
+        })
+        bindAll(lis, 'mouseout', function(event) {
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].classList.remove('highlight-li')
+            }
+        })
+    }
+
+    const __main = () => {
+        bindLi()
+        bindClickIndex()
+    }
+    __main()
+</script>
+</body>
+</html>
