@@ -85,7 +85,9 @@
     opacity: 0.3;
     width: 100px;
     height: 35px;
-    bottom: -34px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 8%;
     box-shadow: 0 3px 6px rgba(33, 33, 33, 0.1), 0 3px 12px rgba(33, 33, 33, 0.15);
 }
@@ -94,8 +96,8 @@
     width: 15px;
     height: 15px;
     display: inline-block;
-    position: absolute;
-    bottom: 10px;
+    position: relative;
+    top: 10px;
 }
 
 .box-music {
@@ -104,6 +106,7 @@
     box-sizing: border-box;
     position: relative;
     margin: 0 auto;
+    top: -19px;
 }
 .wifi-symbol {
     width: 50px;
@@ -156,7 +159,7 @@
     height: 2px;
     margin-bottom: 20px;
     background: lightgray;
-    bottom: -18px;
+    top: -2px;
     left: 40px;
 }
 
