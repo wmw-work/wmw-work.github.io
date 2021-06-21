@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            width: 455px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .title  {
+            position: relative;
+            width: 450px;
+            margin: 50px auto;
+            top: -45px;
+            left: -80px;
+        }
+        #id-score {
+            display: inline-block;
+            font-size: 20px;
+            background: yellow;
+            width: 110px;
+            height: 35px;
+            padding: 2px;
+            position: absolute;
+            left: 35%;
+            top: 5px;
+        }
+        .score {
+            width: 55px;
+            height: 30px;
+            font-size: 20px;
+            border: 0;
+            position: absolute;
+            right: 0;
+            background: yellow;
+        }
+        #id-time {
+            display: inline-block;
+            position: absolute;
+            background: wheat;
+            width: 105px;
+            height: 35px;
+            font-size: 20px;
+            left: 72%;
+            padding: 2px;
+            top: 5px;
+        }
+        .time {
+            width: 45px;
+            height: 30px;
+            font-size: 20px;
+            border: 0;
+            position: absolute;
+            left: 60px;
+            background: wheat;
+        }
+        #map {
+            width: 450px;
+            height: 300px;
+            border: 1px solid black;
+            display: block;
+            position: absolute;
+            overflow: hidden;
+        }
+        .food {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgb(0, 255, 98);
+            display: inline-block;
+        }
+        .snake {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: 140px;
+            background-color: rgb(255, 0, 0);
+            display: inline-block;
+        }
+        .head {
+            background-color: black;
+        }
+        .mask {
+            position: absolute;
+            width: 451px;
+            height: 301px;
+            background: black;
+            opacity: 0.8;
+            display: none;
+        }
+        .end {
+            font-size: 60px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-38%);
+            top: 33%;
+            width: 100%;
+            font-weight: bold;
+            color: red;
+        }
+        .again {
+            width: 50%;
+            height: 55px;
+            margin: 0 auto;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 65%;
+            font-size: 35px;
+            border: 0;
+            border-radius: 10px;
+            color: white;
+            background: linear-gradient(#4E3DE5FF, #009EC5FF);
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class='title'>
+        <div id="id-score">分数 :<input type="text" value="0" class="score"></div>
+        <div id="id-time">时间 :<input type="text" value="0" class="time"></div>
+    </div>
+    <div class='main'>
+        <div id='map' class="map">
+            <span class='head snake'></span>
+            <span class='snake'></span>
+            <span class='snake'></span>    
+        </div>
+        <div class="mask">
+            <div class="end">GAME OVER</div>
+            <button class="again">重新开始</button>
+        </div>
+
+    </div>
+    <script>
+        const log = console.log.bind(console)
+
+        const e = selector => document.querySelector(selector)
+
+        const es = selector => document.querySelectorAll(selector)
+
+        const appendHtml = (element, html) => element.insertAdjacentHTML('beforeend', html)
+       
+        // 食物位置随机,不与蛇身体重合
+        const foodPosition = () => {
+            let map = e('.map')
+            let snake = es('.snake')
+            let position = []
+            let left = Math.floor(Math.random() * 45) * 10
+            let top = Math.floor(Math.random() * 30) * 10
+            for (let i = 0; i < snake.length; i++) {
+                let snakeTop = Number(snake[i].style.top.split('px')[0])
+                let snakeLeft = Number(snake[i].style.left.split('px')[0])
+                if (snakeTop === top && snakeLeft === left) {
+                    foodPosition()
+                }
+            }
+            position.push(top)
+            position.push(left)
+            return position
+        }
+        // 食物出现
+        const foodAppear = () => {
+            let top = foodPosition()[0]
+            let left = foodPosition()[1]
+            var s = document.createElement('span');
+            s.setAttribute('class', 'food')
+            s.style.top = top + 'px'
+            s.style.left = left + 'px'
+            map.appendChild(s);
+        }
+
+        // 蛇移动
+        const snakeMove = (direction) => {
+            let spans = es('.snake')
+            if (direction === 'right') {
+                for (let i = spans.length - 1; i >= 0; i--) {
+                let span = spans[i]
+                    if (i === 0) {
+                        span.style.left = Number(span.style.left.split('px')[0]) + 10 + 'px'
+                        eatFood()
+                    } else {
+                        span.style.top = spans[i - 1].style.top
+                        span.style.left = spans[i - 1].style.left  
+                    }
+                }
+            } else if (direction === 'up') {
+                for (let i = spans.length - 1; i >= 0; i--) {
+                let span = spans[i]
+                    if (i === 0) {
+                        span.style.top = Number(span.style.top.split('px')[0]) - 10 + 'px'
+                        eatFood()
+                    } else {
+                        span.style.top = spans[i - 1].style.top
+                        span.style.left = spans[i - 1].style.left  
+                    }
+                }
+            } else if (direction === 'down') {
+                for (let i = spans.length - 1; i >= 0; i--) {
+                let span = spans[i]
+                    if (i === 0) {
+                        span.style.top = Number(span.style.top.split('px')[0]) + 10 + 'px'
+                        eatFood()
+
+                    } else {
+                        span.style.top = spans[i - 1].style.top
+                        span.style.left = spans[i - 1].style.left  
+                    }
+                }
+            } else if (direction === 'left') {
+                for (let i = spans.length - 1; i >= 0; i--) {
+                let span = spans[i]
+                    if (i === 0) {
+                        span.style.left = Number(span.style.left.split('px')[0]) - 10 + 'px'
+                        eatFood()
+
+                    } else {
+                        span.style.top = spans[i - 1].style.top
+                        span.style.left = spans[i - 1].style.left  
+                    }
+                }
+            } 
+        }
+
+        // 判断蛇头是否吃到食物
+        const eatFood = () => {
+            let map = e('.map')
+            let head = e('.head')
+            let food = e('.food')
+            let snake = es('.snake')
+            let score = e('.score')
+            if (head.style.top === food.style.top && head.style.left === food.style.left) {
+                food.remove()
+                var s = document.createElement('span');
+                s.setAttribute('class', 'snake')
+                s.style.top = snake[snake.length - 1].style.top
+                s.style.left = snake[snake.length - 1].style.left
+                map.appendChild(s);
+                foodAppear()
+                score.value = String(Number(score.value) + 1)
+            }
+        }
+
+        // 蛇移动的方向及移动
+        const snakeDirection = () => {
+            let spans = es('.snake')
+            let mask = e('.mask')
+            let headStyle = spans[0].style
+            headStyle.left = '210px'
+            headStyle.top = '140px'
+            spans[1].style.left = '200px'
+            spans[1].style.top = '140px'
+            spans[2].style.left = '190px'
+            spans[2].style.top = '140px'
+            let direction = 'right'
+            let beforeDirection = ['right']
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowUp') {
+                    if (beforeDirection[beforeDirection.length - 1] !== 'down') {
+                        direction = 'up'
+                        beforeDirection.push('up')
+                    }
+                } else if (e.key === 'ArrowDown') {
+                    if (beforeDirection[beforeDirection.length - 1] !== 'up') {
+                        direction = 'down'
+                        beforeDirection.push('down')
+                    }
+                } else if (e.key === 'ArrowRight') {
+                    if (beforeDirection[beforeDirection.length - 1] !== 'left') {
+                        direction = 'right'
+                        beforeDirection.push('right')
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    if (beforeDirection[beforeDirection.length - 1] !== 'right') {
+                        direction = 'left'
+                        beforeDirection.push('left')
+                    }
+                }
+            })
+            // 计时
+            let play_time = e('.time')
+            let clock = setInterval(function() {
+                play_time.value = Number(play_time.value) + 1
+            }, 1000)
+
+            let timer = setInterval(() => {
+                snakeMove(direction)
+                if(headStyle.left === '450px' || headStyle.left === '-10px' || headStyle.top === '300px' || headStyle.top === '-10px' || crashSelf()) {
+                    clearInterval(timer)
+                    clearInterval(clock)
+                    mask.classList.add('active')
+                }
+            }, 300)
+        }
+
+        // 判断蛇是否撞到自己的身体
+        const crashSelf = () => {
+            let head = e('.head')
+            let snake = es('.snake')
+            for (let i = 1; i < snake.length; i++) {
+                let body = snake[i]
+                if (head.style.top === body.style.top && head.style.left === body.style.left) {
+                    return true
+                }
+            }
+            return false
+        }
+        
+        //监听重新开始
+        const playAgain = () => {
+            let again = e('.again')
+            again.addEventListener('click', () => {
+                window.location.reload()
+            })
+        }
+
+        const _main = () => {
+            foodAppear()
+            snakeDirection()
+            playAgain()
+        }
+
+        _main()
+
+    </script>
+</body>
+</html>
